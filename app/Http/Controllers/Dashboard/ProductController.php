@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-class UserController extends Controller
+class ProductController extends Controller
 {
     /**
      * @return Renderable

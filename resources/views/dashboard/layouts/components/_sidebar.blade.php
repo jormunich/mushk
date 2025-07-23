@@ -23,6 +23,24 @@
                 <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
+                <h4 class="text-section">{{ __('Content management') }}</h4>
+            </li>
+            <li class="nav-item @if(Request::is('dashboard/categories*')) active @endif">
+                <a href="{{ route('dashboard.categories.index') }}">
+                    <i class="fas fa-tag"></i>
+                    <p>{{ __('Categories') }}</p>
+                </a>
+            </li>
+            <li class="nav-item @if(Request::is('dashboard/products*')) active @endif">
+                <a href="{{ route('dashboard.products.index') }}">
+                    <i class="fas fa-box"></i>
+                    <p>{{ __('Products') }}</p>
+                </a>
+            </li>
+            <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
                 <h4 class="text-section">{{ __('Settings') }}</h4>
             </li>
             <li class="nav-item">
