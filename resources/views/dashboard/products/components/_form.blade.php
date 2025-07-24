@@ -4,7 +4,7 @@
             @include('dashboard.components.form._text', ['name' => 'name'])
         </div>
         <div class="col-lg-6">
-            @include('dashboard.components.form._file', ['name' => 'image', 'model' => $category ?? null])
+            @include('dashboard.components.form._file', ['name' => 'image', 'model' => $product ?? null])
         </div>
     </div>
 </div>

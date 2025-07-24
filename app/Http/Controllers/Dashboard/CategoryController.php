@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\CategoryRequest;
 use App\Models\Category;
+use App\Services\FileService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Psr\Container\ContainerExceptionInterface;
@@ -12,6 +13,14 @@ use Psr\Container\NotFoundExceptionInterface;
 
 class CategoryController extends Controller
 {
+
+    /**
+     * @param FileService $fileService
+     */
+    public function __construct(protected FileService $fileService)
+    {
+    }
+
     /**
      * @return Renderable
      * @throws ContainerExceptionInterface
@@ -38,7 +47,9 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request): RedirectResponse
     {
-        Category::create($request->validated());
+        $category = Category::create($request->validated());
+        $this->fileService->setWidths([Category::IMAGE_WIDTH])
+            ->storeEntityImage($request->file('image'), $category);
         flash()->success(__('Category created'));
 
         return redirect()->route('dashboard.categories.index');
@@ -70,6 +81,10 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
         $category->update($request->validated());
+        if($request->file('image')){
+            $this->fileService->setWidths([Category::IMAGE_WIDTH])
+                ->storeEntityImage($request->file('image'), $category);
+        }
         flash()->success(__('Category updated'));
 
         return redirect()->route('dashboard.categories.index');

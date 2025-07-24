@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Dashboard\UserRequest;
-use App\Models\User;
+use App\Http\Requests\Dashboard\ProductRequest;
+use App\Models\Product;
+use App\Services\FileService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Psr\Container\ContainerExceptionInterface;
@@ -12,6 +13,14 @@ use Psr\Container\NotFoundExceptionInterface;
 
 class ProductController extends Controller
 {
+
+    /**
+     * @param FileService $fileService
+     */
+    public function __construct(protected FileService $fileService)
+    {
+    }
+
     /**
      * @return Renderable
      * @throws ContainerExceptionInterface
@@ -19,9 +28,9 @@ class ProductController extends Controller
      */
     public function index(): Renderable
     {
-        $users = User::latest()->paginate(20);
+        $products = Product::latest()->paginate(20);
 
-        return view('dashboard.users.index', compact('users'));
+        return view('dashboard.products.index', compact('products'));
     }
 
     /**
@@ -29,65 +38,67 @@ class ProductController extends Controller
      */
     public function create(): Renderable
     {
-        $roles = User::ROLES;
-
-        return view('dashboard.users.create', compact('roles'));
+        return view('dashboard.products.create');
     }
 
     /**
-     * @param UserRequest $request
+     * @param ProductRequest $request
      * @return RedirectResponse
      */
-    public function store(UserRequest $request): RedirectResponse
+    public function store(ProductRequest $request): RedirectResponse
     {
-        User::create($request->validated());
-        flash()->success(__('User created'));
+        $product = Product::create($request->validated());
+        $this->fileService->setWidths([Product::IMAGE_WIDTH])
+            ->storeEntityImage($request->file('image'), $product);
+        flash()->success(__('Product created'));
 
-        return redirect()->route('dashboard.users.index');
+        return redirect()->route('dashboard.products.index');
     }
 
     /**
-     * @param User $user
+     * @param Product $product
      * @return Renderable
      */
-    public function show(User $user): Renderable
+    public function show(Product $product): Renderable
     {
-        return view('dashboard.users.show', compact('user'));
+        return view('dashboard.products.show', compact('product'));
     }
 
     /**
-     * @param User $user
+     * @param Product $product
      * @return Renderable
      */
-    public function edit(User $user): Renderable
+    public function edit(Product $product): Renderable
     {
-        $roles = User::ROLES;
-
-        return view('dashboard.users.edit', compact('user', 'roles'));
+        return view('dashboard.products.edit', compact('product'));
     }
 
     /**
-     * @param UserRequest $request
-     * @param User $user
+     * @param ProductRequest $request
+     * @param Product $product
      * @return RedirectResponse
      */
-    public function update(UserRequest $request, User $user): RedirectResponse
+    public function update(ProductRequest $request, Product $product): RedirectResponse
     {
-        $user->update($request->validated());
-        flash()->success(__('User updated'));
+        $product->update($request->validated());
+        if($request->file('image')){
+            $this->fileService->setWidths([Product::IMAGE_WIDTH])
+                ->storeEntityImage($request->file('image'), $product);
+        }
+        flash()->success(__('Product updated'));
 
-        return redirect()->route('dashboard.users.index');
+        return redirect()->route('dashboard.products.index');
     }
 
     /**
-     * @param User $user
+     * @param Product $product
      * @return RedirectResponse
      */
-    public function destroy(User $user): RedirectResponse
+    public function destroy(Product $product): RedirectResponse
     {
-        $user->delete();
-        flash()->success(__('User deleted'));
+        $product->delete();
+        flash()->success(__('Product deleted'));
 
-        return redirect()->route('dashboard.users.index');
+        return redirect()->route('dashboard.products.index');
     }
 }

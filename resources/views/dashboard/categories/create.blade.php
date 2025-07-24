@@ -29,7 +29,7 @@
                     <div class="card-header">
                         <div class="card-title">{{ __('Create category') }}</div>
                     </div>
-                    <form action="{{ route('dashboard.categories.store') }}" method="POST">
+                    <form action="{{ route('dashboard.categories.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @include('dashboard.categories.components._form')
                         <div class="card-action">

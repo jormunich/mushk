@@ -2,7 +2,7 @@
 @section('content')
     <div class="page-inner">
         <div class="page-header">
-            <h3 class="fw-bold mb-3">{{ __('Edit category') }}</h3>
+            <h3 class="fw-bold mb-3">{{ __('Create product') }}</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="{{ route('dashboard.index') }}">
@@ -13,13 +13,13 @@
                     <i class="icon-arrow-right"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('dashboard.categories.index') }}">{{ __('Categories') }}</a>
+                    <a href="{{ route('dashboard.products.index') }}">{{ __('Products') }}</a>
                 </li>
                 <li class="separator">
                     <i class="icon-arrow-right"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">{{ __('Edit category') }}</a>
+                    <a href="#">{{ __('Create product') }}</a>
                 </li>
             </ul>
         </div>
@@ -27,12 +27,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">{{ __('Edit category') }}</div>
+                        <div class="card-title">{{ __('Create product') }}</div>
                     </div>
-                    <form action="{{ route('dashboard.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dashboard.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PATCH')
-                        @include('dashboard.categories.components._form', ['model' => $category])
+                        @include('dashboard.products.components._form')
                         <div class="card-action">
                             <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
                             <button class="btn btn-danger _m_back" type="button">{{ __('Cancel') }}</button>
