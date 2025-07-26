@@ -11,3 +11,5 @@ Route::get('/', [DashboardController::class, 'index'])->name('index');
 Route::resource('users', UserController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
+
+Route::post('/upload', [DashboardController::class, 'upload'])->name('upload');

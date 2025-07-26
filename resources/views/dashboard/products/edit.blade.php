@@ -32,7 +32,7 @@
                     <form action="{{ route('dashboard.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
-                        @include('dashboard.products.products._form', ['model' => $product])
+                        @include('dashboard.products.components._form', ['model' => $product])
                         <div class="card-action">
                             <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
                             <button class="btn btn-danger _m_back" type="button">{{ __('Cancel') }}</button>

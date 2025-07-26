@@ -80,7 +80,9 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product): RedirectResponse
     {
-        $product->update($request->validated());
+        $data = $request->validated();
+        $data['is_popular'] = $request->get('is_popular', 0);
+        $product->update($data);
         if($request->file('image')){
             $this->fileService->setWidths([Product::IMAGE_WIDTH])
                 ->storeEntityImage($request->file('image'), $product);
