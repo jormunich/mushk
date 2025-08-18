@@ -608,4 +608,14 @@ a.btn-link.text-light:after {
     margin-top: 5px
 }
 
+.category-carousel img {
+    width: 160px;
+    height: 160px;
+}
+
+.products-carousel img {
+    width: 210px;
+    height: 210px;
+}
+
 /* ============ custom styles .end// ============ */

@@ -16,7 +16,7 @@ trait HasFile
             return Storage::url('/' . $this->getTable() . '/' . $this->id . $this->$field);
         }
 
-        return null;
+        return asset('/dashboard/img/default.webp');
     }
 
     /**
@@ -31,6 +31,6 @@ trait HasFile
             return Storage::url('/' . $this->getTable() . '/' . $this->id . '/thumb/' . $thisClass->getConstant(strtoupper($field) . '_WIDTH') . $this->$field);
         }
 
-        return null;
+        return asset('/dashboard/img/default.webp');
     }
 }

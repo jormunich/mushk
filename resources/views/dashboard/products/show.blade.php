@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <img src="{{ $product->getFilePath() ?: asset('/dashboard/img/default.webp') }}" width="150px">
+                            <img src="{{ $product->getFilePath() }}" width="150px">
                         </div>
                     </div>
                 </div>
