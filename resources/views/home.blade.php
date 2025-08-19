@@ -159,13 +159,7 @@
                                 <div class="d-flex flex-column text-center">
                                     <h3 class="fs-6 fw-normal">{{ $product->name }}</h3>
                                     <div>
-                                         <span class="rating">
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
-                                         </span>
+                                        {!! $product->stars !!}
                                         <span>({{ $product->review_count }})</span>
                                     </div>
                                     <div class="d-flex justify-content-center align-items-center gap-2">
@@ -173,7 +167,9 @@
                                             <del>{{ $product->old_price_formatted }}</del>
                                         @endif
                                         <span class="text-dark fw-semibold">{{ $product->price_formatted }}</span>
-                                        <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% {{ __('OFF') }}</span>
+                                            @if($product->old_price)
+                                            <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">{{ $product->sale_percent }}% {{ __('OFF') }}</span>
+                                            @endif
                                     </div>
                                     <div class="button-area p-3 pt-0">
                                         <div class="row g-1 mt-2">
@@ -273,13 +269,7 @@
                                     <div class="d-flex flex-column text-center">
                                         <h3 class="fs-6 fw-normal">{{ $product->name }}</h3>
                                         <div>
-                                         <span class="rating">
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
-                                         </span>
+                                            {!! $product->stars !!}
                                             <span>({{ $product->review_count }})</span>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center gap-2">

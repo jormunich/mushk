@@ -17,7 +17,7 @@ return new class extends Migration
             $table->double('price');
             $table->double('old_price')->nullable();
             $table->integer('review_count')->default(1);
-            $table->tinyInteger('review')->default(5);
+            $table->double('review')->default(5);
             $table->string('image')->nullable();
             $table->boolean('is_popular')->default(0);
             $table->text('description');
