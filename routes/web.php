@@ -10,7 +10,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-    Route::get('/products', [ProductController::class, 'index'])->name('index');
-    Route::get('/products/{id}', [ProductController::class, 'show'])->name('show');
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::get('/{id}', [ProductController::class, 'show'])->name('show');
 });
 

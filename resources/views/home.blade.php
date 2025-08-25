@@ -277,7 +277,7 @@
                                                 <del>{{ $product->old_price_formatted }}</del>
                                             @endif
                                             <span class="text-dark fw-semibold">{{ $product->price_formatted }}</span>
-                                            <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% {{ __('OFF') }}</span>
+                                            <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">{{ $product->sale_percent }}% {{ __('OFF') }}</span>
                                         </div>
                                         <div class="button-area p-3 pt-0">
                                             <div class="row g-1 mt-2">
