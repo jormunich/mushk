@@ -468,8 +468,8 @@
                             <svg width="32" height="32"><use xlink:href="#package"></use></svg>
                         </div>
                         <div class="card-body p-0">
-                            <h5>Free delivery</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                            <h5>{{ __('Free delivery') }}</h5>
+                            <p class="card-text">{{ __('Enjoy fast and free shipping on all orders') }}</p>
                         </div>
                     </div>
                 </div>
@@ -479,8 +479,8 @@
                             <svg width="32" height="32"><use xlink:href="#secure"></use></svg>
                         </div>
                         <div class="card-body p-0">
-                            <h5>100% secure payment</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                            <h5>{{ __('100% secure payment') }}</h5>
+                            <p class="card-text">{{ __('Your transactions are safe and encrypted') }}</p>
                         </div>
                     </div>
                 </div>
@@ -490,8 +490,8 @@
                             <svg width="32" height="32"><use xlink:href="#quality"></use></svg>
                         </div>
                         <div class="card-body p-0">
-                            <h5>Quality guarantee</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                            <h5>{{ __('Quality guarantee') }}</h5>
+                            <p class="card-text">{{ __('We provide only the best quality products') }}</p>
                         </div>
                     </div>
                 </div>
@@ -501,8 +501,8 @@
                             <svg width="32" height="32"><use xlink:href="#savings"></use></svg>
                         </div>
                         <div class="card-body p-0">
-                            <h5>guaranteed savings</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                            <h5>{{ __('Guaranteed savings') }}</h5>
+                            <p class="card-text">{{ __('Shop smart and save more every time') }}</p>
                         </div>
                     </div>
                 </div>
@@ -512,13 +512,15 @@
                             <svg width="32" height="32"><use xlink:href="#offers"></use></svg>
                         </div>
                         <div class="card-body p-0">
-                            <h5>Daily offers</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                            <h5>{{ __('Daily offers') }}</h5>
+                            <p class="card-text">{{ __('Discover new deals and discounts each day') }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
 
 @endsection

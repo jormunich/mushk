@@ -350,7 +350,7 @@
                 <p>© {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
             </div>
             <div class="col-md-6 credit-link text-start text-md-end">
-                <p>Designed by <a href="https://munich.ventures/" target="_blank">Munich Ventures</a></p>
+                <p>{{ __('Designed by') }} <a href="https://munich.ventures/" target="_blank">Munich Ventures</a></p>
             </div>
         </div>
     </div>
