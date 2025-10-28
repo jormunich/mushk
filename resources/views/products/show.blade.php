@@ -110,9 +110,12 @@
                         <div class="tab-pane fade" id="reviews" role="tabpanel">
                             <div class="reviews-section">
                                 <h5>{{ __('Customer Reviews') }}</h5>
-                                <p class="text-muted">({{ $product->review_count }} {{ __('reviews') }})</p>
+                                <p class="text-muted">({{ $product->review_count }} {{ __('Reviews') }})</p>
+                                <div class="d-flex align-items-center gap-1">
+                                    {!! $product->stars !!}
+                                </div>
                                 <div class="mt-4">
-                                    <p>{{ __('No reviews yet.') }}</p>
+                                    <p>{{ __('No feedbacks yet') }}</p>
                                 </div>
                             </div>
                         </div>

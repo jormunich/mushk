@@ -9,7 +9,7 @@
                     <h2 class="display-1 ls-1"><span class="fw-bold text-primary">Premium</span> MicroGreens at your <span class="fw-bold">Doorsteps</span></h2>
                     <p class="fs-4">Dignissim massa diam elementum.</p>
                     <div class="d-flex gap-3">
-                        <a href="#" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">Start Shopping</a>
+                        <a href="{{ route('products.index') }}" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">{{ __('Start Shopping') }}</a>
                         <a href="#" class="btn btn-dark text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">Join Now</a>
                     </div>
                     <div class="row my-5">
@@ -201,7 +201,7 @@
                                 <div class="content-wrapper text-light">
                                     <h3 class="banner-title text-light">Items on SALE</h3>
                                     <p>Discounts up to 30%</p>
-                                    <a href="#" class="btn-link text-white">Shop Now</a>
+                                    <a href="{{ route('products.index') }}" class="btn-link text-white">{{ __('Shop Now') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +211,7 @@
                                 <div class="content-wrapper text-light">
                                     <h3 class="banner-title text-light">Combo offers</h3>
                                     <p>Discounts up to 50%</p>
-                                    <a href="#" class="btn-link text-white">Shop Now</a>
+                                    <a href="{{ route('products.index') }}" class="btn-link text-white">{{ __('Shop Now') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -221,7 +221,7 @@
                                 <div class="content-wrapper text-light">
                                     <h3 class="banner-title text-light">Discount Coupons</h3>
                                     <p>Discounts up to 40%</p>
-                                    <a href="#" class="btn-link text-white">Shop Now</a>
+                                    <a href="{{ route('products.index') }}" class="btn-link text-white">{{ __('Shop Now') }}</a>
                                 </div>
                             </div>
                         </div>
