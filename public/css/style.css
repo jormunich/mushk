@@ -618,4 +618,35 @@ a.btn-link.text-light:after {
     height: 210px;
 }
 
+/* ============ Product Detail Page Styles ============ */
+
+.product-image img {
+    max-height: 600px;
+    object-fit: contain;
+}
+
+.quantity-input {
+    width: 80px;
+}
+
+.product-details h1 {
+    color: #333;
+}
+
+.nav-tabs .nav-link {
+    color: #666;
+    border: none;
+    padding: 0.75rem 1.5rem;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--bs-primary);
+    background: transparent;
+    border-bottom: 2px solid var(--bs-primary);
+}
+
+.tab-content {
+    min-height: 150px;
+}
+
 /* ============ custom styles .end// ============ */

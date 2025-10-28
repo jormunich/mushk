@@ -19,6 +19,13 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        return view('products.show', compact('product'));
+        $relatedProducts = Product::where('id', '!=', $product->id)
+            ->whereHas('categories', function($query) use ($product) {
+                $query->whereIn('categories.id', $product->categories->pluck('id'));
+            })
+            ->take(10)
+            ->get();
+
+        return view('products.show', compact('product', 'relatedProducts'));
     }
 }
