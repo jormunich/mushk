@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
@@ -22,6 +24,11 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
+
+        // Share categories globally
+        View::composer('*', function ($view) {
+            $view->with('globalCategories', Category::all());
+        });
 
         Blade::directive('admin', function () {
             return "<?php if (auth()->user()->is_admin) { ?>";

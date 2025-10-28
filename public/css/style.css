@@ -649,4 +649,15 @@ a.btn-link.text-light:after {
     min-height: 150px;
 }
 
+/* ============ Category Menu Styles ============ */
+
+.menu-list li {
+    border-bottom: 1px dashed #ddd;
+    padding: 0.75rem 0;
+}
+
+.menu-list li:last-child {
+    border-bottom: none;
+}
+
 /* ============ custom styles .end// ============ */

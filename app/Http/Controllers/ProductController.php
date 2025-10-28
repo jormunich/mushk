@@ -10,7 +10,21 @@ class ProductController extends Controller
 {
     public function index(Request $request): Renderable
     {
-        $products = Product::all();
+        $query = Product::query();
+
+        // Filter by category if provided
+        if ($request->has('category_id') && $request->category_id) {
+            $query->whereHas('categories', function($q) use ($request) {
+                $q->where('categories.id', $request->category_id);
+            });
+        }
+
+        // Filter by search term if provided
+        if ($request->has('search') && $request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $products = $query->get();
 
         return view('products.index', compact('products'));
     }
