@@ -8,9 +8,9 @@
                 <div class="col-md-12">
 
                     <div class="swiper">
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper row">
                             @foreach($products as $product)
-                            <div class="product-item swiper-slide">
+                            <div class="product-item col-md-3">
                                 <figure>
                                     <a href="{{ route('products.show', $product->id) }}" title="{{ $product->name }}">
                                         <img src="{{ $product->getFilePath() }}" alt="{{ $product->name }}" class="tab-image">

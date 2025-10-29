@@ -66,9 +66,12 @@ class Product extends Model
 
     public function getSalePercentAttribute(): int
     {
-        $percent = (($this->old_price - $this->price) / $this->old_price) * 100;
+        if ($this->old_price) {
+            $percent = (($this->old_price - $this->price) / $this->old_price) * 100;
 
-        return round($percent);
+            return round($percent);
+        }
 
+        return 0;
     }
 }

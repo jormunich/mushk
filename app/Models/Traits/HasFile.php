@@ -13,7 +13,7 @@ trait HasFile
     public function getFilePath(string $field = 'image'): string|null
     {
         if ($this->$field) {
-            return Storage::url('/' . $this->getTable() . '/' . $this->id . $this->$field);
+            return Storage::disk('public')->url('/' . $this->getTable() . '/' . $this->id . $this->$field);
         }
 
         return asset('/dashboard/img/default.webp');
@@ -28,7 +28,7 @@ trait HasFile
         $thisClass = new \ReflectionClass($this);
 
         if ($this->$field) {
-            return Storage::url('/' . $this->getTable() . '/' . $this->id . '/thumb/' . $thisClass->getConstant(strtoupper($field) . '_WIDTH') . $this->$field);
+            return Storage::disk('public')->url('/' . $this->getTable() . '/' . $this->id . '/thumb/' . $thisClass->getConstant(strtoupper($field) . '_WIDTH') . $this->$field);
         }
 
         return asset('/dashboard/img/default.webp');
