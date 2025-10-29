@@ -31,7 +31,7 @@ class ProductController extends Controller
 
     public function show($id): Renderable
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('categories')->findOrFail($id);
 
         $relatedProducts = Product::where('id', '!=', $product->id)
             ->whereHas('categories', function($query) use ($product) {

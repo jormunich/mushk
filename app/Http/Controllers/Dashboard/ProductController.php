@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\ProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use App\Services\FileService;
 use Illuminate\Contracts\Support\Renderable;
@@ -38,7 +39,8 @@ class ProductController extends Controller
      */
     public function create(): Renderable
     {
-        return view('dashboard.products.create');
+        $categories = Category::pluck('name', 'id');
+        return view('dashboard.products.create', compact('categories'));
     }
 
     /**
@@ -48,6 +50,12 @@ class ProductController extends Controller
     public function store(ProductRequest $request): RedirectResponse
     {
         $product = Product::create($request->validated());
+        
+        // Sync categories
+        if ($request->has('categories')) {
+            $product->categories()->sync($request->categories);
+        }
+        
         $this->fileService->setWidths([Product::IMAGE_WIDTH])
             ->storeEntityImage($request->file('image'), $product);
         flash()->success(__('Product created'));
@@ -61,6 +69,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): Renderable
     {
+        $product->load('categories');
         return view('dashboard.products.show', compact('product'));
     }
 
@@ -70,7 +79,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product): Renderable
     {
-        return view('dashboard.products.edit', compact('product'));
+        $product->load('categories');
+        $categories = Category::pluck('name', 'id');
+        return view('dashboard.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -83,6 +94,14 @@ class ProductController extends Controller
         $data = $request->validated();
         $data['is_popular'] = $request->get('is_popular', 0);
         $product->update($data);
+        
+        // Sync categories
+        if ($request->has('categories')) {
+            $product->categories()->sync($request->categories);
+        } else {
+            $product->categories()->detach();
+        }
+        
         if($request->file('image')){
             $this->fileService->setWidths([Product::IMAGE_WIDTH])
                 ->storeEntityImage($request->file('image'), $product);

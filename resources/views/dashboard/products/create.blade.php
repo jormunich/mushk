@@ -31,7 +31,7 @@
                     </div>
                     <form action="{{ route('dashboard.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @include('dashboard.products.components._form')
+                        @include('dashboard.products.components._form', ['categories' => $categories])
                         <div class="card-action">
                             <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
                             <button class="btn btn-danger _m_back" type="button">{{ __('Cancel') }}</button>

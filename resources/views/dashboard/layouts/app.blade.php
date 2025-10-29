@@ -38,6 +38,10 @@
     <link rel="stylesheet" href="{{asset('dashboard/css/plugins.min.css')}}" />
     <link rel="stylesheet" href="{{asset('dashboard/css/kaiadmin.min.css')}}" />
     <link rel="stylesheet" href="{{asset('dashboard/css/plugin/toastr.min.css')}}" />
+    
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('dashboard/css/custom.css')}}" />
@@ -128,6 +132,9 @@
 
     <!-- Toastr JS -->
     <script src="{{asset('dashboard/js/plugin/toastr.min.js')}}"></script>
+    
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- Custom JS -->
     <script src="{{asset('dashboard/js/custom.js')}}"></script>
@@ -143,6 +150,14 @@
         @foreach (session('flash_notification', collect())->toArray() as $message)
             toastr.{{$message['level']}}('{!! str_replace("'", '', $message['message']) !!}');
         @endforeach
+        
+        // Initialize Select2 for multi-select fields
+        $(document).ready(function() {
+            $('.select2-multiselect').select2({
+                placeholder: 'Select options',
+                allowClear: true
+            });
+        });
     </script>
 
   </body>

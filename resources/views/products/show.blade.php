@@ -8,6 +8,9 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('products.index') }}">{{ __('Products') }}</a></li>
+                    @if($product->categories->isNotEmpty())
+                        <li class="breadcrumb-item"><a href="{{ route('products.index', ['category_id' => $product->categories->first()->id]) }}">{{ $product->categories->first()->name }}</a></li>
+                    @endif
                     <li class="breadcrumb-item active">{{ $product->name }}</li>
                 </ol>
             </nav>
@@ -25,6 +28,15 @@
                 <div class="col-md-6">
                     <div class="product-details">
                         <h1 class="h2 mb-3">{{ $product->name }}</h1>
+
+                        @if($product->categories->isNotEmpty())
+                            <div class="mb-3">
+                                <span class="text-muted fw-semibold">{{ __('Category') }}: </span>
+                                @foreach($product->categories as $category)
+                                    <a href="{{ route('products.index', ['category_id' => $category->id]) }}" class="badge bg-primary text-decoration-none me-1">{{ $category->name }}</a>
+                                @endforeach
+                            </div>
+                        @endif
 
                         <div class="d-flex align-items-center gap-3 mb-3">
                             <div class="d-flex align-items-center gap-1">

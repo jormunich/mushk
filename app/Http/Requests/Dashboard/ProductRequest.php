@@ -21,7 +21,9 @@ class ProductRequest extends FormRequest
             'review' => ['nullable', 'numeric'],
             'description' => ['required', 'string', 'max:5000'],
             'is_popular' => ['nullable'],
-            'image' => ['nullable', 'image', 'mimes:jpg']
+            'image' => ['nullable', 'image', 'mimes:jpg'],
+            'categories' => ['nullable', 'array'],
+            'categories.*' => ['exists:categories,id']
         ];
     }
 }
