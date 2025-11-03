@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-6 pt-5 mt-5">
                     <h2 class="display-1 ls-1"><span class="fw-bold text-primary">Premium</span> MicroGreens at your <span class="fw-bold">Doorsteps</span></h2>
-                    <p class="fs-4">Dignissim massa diam elementum.</p>
+                    <p class="fs-4">Fresh, organic, and nutrient-rich greens delivered daily.</p>
                     <div class="d-flex gap-3">
                         <a href="{{ route('products.index') }}" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">{{ __('Start Shopping') }}</a>
                         <a href="#" class="btn btn-dark text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">Join Now</a>
@@ -45,7 +45,7 @@
                             <div class="col-md-9">
                                 <div class="card-body p-0">
                                     <h5 class="text-light">Fresh from farm</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                                    <p class="card-text">Harvested daily and delivered straight to your door.</p>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             <div class="col-md-9">
                                 <div class="card-body p-0">
                                     <h5 class="text-light">100% Organic</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                                    <p class="card-text">Grown naturally without pesticides or chemicals.</p>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                             <div class="col-md-9">
                                 <div class="card-body p-0">
                                     <h5 class="text-light">Free delivery</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                                    <p class="card-text">Enjoy complimentary shipping on orders over $50.</p>
                                 </div>
                             </div>
                         </div>
@@ -358,9 +358,9 @@
                             </div>
                             <div class="post-header">
                                 <h3 class="post-title">
-                                    <a href="#" class="text-decoration-none">Top 10 casual look ideas to dress up your kids</a>
+                                    <a href="#" class="text-decoration-none">The Health Benefits of MicroGreens You Need to Know</a>
                                 </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit. Aliquet eleifend viverra enim tincidunt donec quam. A in arcu, hendrerit neque dolor morbi...</p>
+                                <p>Discover how these tiny greens pack a powerful nutritional punch. Learn about their vitamins, minerals, and antioxidants that can boost your daily health routine...</p>
                             </div>
                         </div>
                     </article>
@@ -379,9 +379,9 @@
                             </div>
                             <div class="post-header">
                                 <h3 class="post-title">
-                                    <a href="#" class="text-decoration-none">Latest trends of wearing street wears supremely</a>
+                                    <a href="#" class="text-decoration-none">How to Grow Your Own MicroGreens at Home</a>
                                 </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit. Aliquet eleifend viverra enim tincidunt donec quam. A in arcu, hendrerit neque dolor morbi...</p>
+                                <p>Start your own indoor garden with our simple guide. Learn the best varieties to grow, essential supplies needed, and tips for harvesting perfect greens every time...</p>
                             </div>
                         </div>
                     </article>
@@ -400,9 +400,9 @@
                             </div>
                             <div class="post-header">
                                 <h3 class="post-title">
-                                    <a href="#" class="text-decoration-none">10 Different Types of comfortable clothes ideas for women</a>
+                                    <a href="#" class="text-decoration-none">Creative Ways to Use MicroGreens in Your Daily Meals</a>
                                 </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit. Aliquet eleifend viverra enim tincidunt donec quam. A in arcu, hendrerit neque dolor morbi...</p>
+                                <p>Transform your everyday dishes with fresh microgreens. From smoothies to salads, sandwiches to garnishes, explore delicious recipes that add flavor and nutrition...</p>
                             </div>
                         </div>
                     </article>
