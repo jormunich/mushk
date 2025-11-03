@@ -305,23 +305,46 @@
                     <div class="row justify-content-center">
                         <div class="col-md-5 p-3">
                             <div class="section-header">
-                                <h2 class="section-title display-5 text-light">Get 25% Discount on your first purchase</h2>
+                                <h2 class="section-title display-5 text-light">{{ __('Subscribe for News & Updates') }}</h2>
                             </div>
-                            <p>Just Sign Up & Register it now to become member.</p>
+                            <p>{{ __('Stay updated with the latest products, tips, and exclusive offers delivered to your inbox.') }}</p>
                         </div>
                         <div class="col-md-5 p-3">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label d-none">Name</label>
-                                    <input type="text"
-                                           class="form-control form-control-md rounded-0" name="name" id="name" placeholder="Name">
+                            @if(session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
+                            @endif
+                            @if(session('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('error') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
+                            @if(session('info'))
+                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    {{ session('info') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
+                            <form action="{{ route('pages.subscribe') }}" method="POST">
+                                @csrf
                                 <div class="mb-3">
-                                    <label for="email" class="form-label d-none">Email</label>
-                                    <input type="email" class="form-control form-control-md rounded-0" name="email" id="email" placeholder="Email Address">
+                                    <label for="newsletter-email" class="form-label d-none">Email</label>
+                                    <input type="email" 
+                                           class="form-control form-control-md rounded-0 @error('email') is-invalid @enderror" 
+                                           name="email" 
+                                           id="newsletter-email" 
+                                           placeholder="{{ __('Email Address') }}"
+                                           value="{{ old('email') }}"
+                                           required>
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-dark btn-md rounded-0">Submit</button>
+                                    <button type="submit" class="btn btn-dark btn-md rounded-0">{{ __('Subscribe') }}</button>
                                 </div>
                             </form>
 
@@ -418,11 +441,11 @@
                 <div class="container">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-md-4">
-                            <h2 class="mt-5">Download Organic App</h2>
-                            <p>Online Orders made easy, fast and reliable</p>
-                            <div class="d-flex gap-2 flex-wrap mb-5">
-                                <a href="#" title="App store"><img src="images/img-app-store.png" alt="app-store"></a>
-                                <a href="#" title="Google Play"><img src="images/img-google-play.png" alt="google-play"></a>
+                            <h2 class="mt-5">{{ __('Download Organic App') }}</h2>
+                            <p>{{ __('Online Orders made easy, fast and reliable') }}</p>
+                            <div class="mb-5">
+                                <span class="badge bg-dark text-light px-4 py-2 fs-5">{{ __('Coming Soon') }}</span>
+                                <p class="mt-3 text-muted">{{ __('Our mobile app is currently in development. Stay tuned for updates!') }}</p>
                             </div>
                         </div>
                         <div class="col-md-5">
