@@ -1,0 +1,72 @@
+
+name: 1.Deploy Laravel APP Live
+
+on: 
+  # Trigger on push to any branch
+    workflow_dispatch:
+
+jobs:
+  deploy:
+    # Runner name
+    runs-on: munichlive
+    steps:
+      - name: Set MY_VAR conditionally
+        run: |
+          # Extract branch name from GITHUB_REF
+          REPO_NAME=${GITHUB_REPOSITORY##*/}
+          live_url=${{vars.live_url}}
+          MY_VAR="${live_url}"
+          echo "export MY_VAR=$(echo "$MY_VAR" | tr 'A-Z' 'a-z')" | sudo tee /etc/profile.d/live_vars.sh > /dev/null
+          sudo chmod +x /etc/profile.d/live_vars.sh
+          source /etc/profile.d/live_vars.sh
+      - name: Certbot config for Main nginx
+        run: |
+         source /etc/profile.d/dev_vars.sh
+         sudo /root/hostsadd.sh
+         sudo certbot certonly --webroot -w /var/www/letsencrypt -d "${MY_VAR}" --non-interactive --agree-tos --force-renewal
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Write repository variables to file
+        run: |
+          echo "${{ vars.liveenv }}" >> .env
+          sudo sed -i "s/\$deployvar/"live"/g" ./Dockerfile             
+      - name: Nginx conf copy !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        run: |
+         source /etc/profile.d/live_vars.sh 
+         sudo sed -i "s/\$nginxvar/${MY_VAR}/g" ./.github/main-nginx.conf
+         sudo sed -i "s/\$ssl_var/"${MY_VAR}"/g" ./.github/main-nginx.conf
+         sudo cp -r ./.github/main-nginx.conf /etc/nginx/conf.d/${MY_VAR}.conf
+         sudo mkdir -p ./.github/ssl
+         sudo cp -r /etc/letsencrypt/archive/${MY_VAR} ./.github/ssl
+         sudo cp /etc/letsencrypt/ssl-dhparams.pem ./.github/ssl
+         sudo cp /etc/letsencrypt/options-ssl-nginx.conf ./.github/ssl
+         sudo chown ubuntu:ubuntu -R ./.github/ssl
+         sudo chmod 777 -R ./.github/ssl
+         echo $MY_VAR
+       
+      - name: Change in app-nginx file server_name !!!!!!!!!!!!!!!!!!!!!!!!!!
+        run: |
+           source /etc/profile.d/live_vars.sh
+           echo $MY_VAR
+           sudo sed -i "s/\$nginxvar/${MY_VAR}/g" ./.github/app-nginx.conf
+      - name: Change compose file (BRACHES MAIN, DEV, etc...) !!!!!!!!!!!!!!!!!!!!!!!!!!
+        run: |
+           source /etc/profile.d/live_vars.sh
+           echo $MY_VAR
+           sudo sed -i "s/\$comvar/${MY_VAR}/g" ./compose.yaml
+           sudo mkdir -p /storages/${MY_VAR}
+           sudo chmod -R 777 /storages
+      - name: Run docker compose !!!!!!!!!!!!!!!!!!!!!!!!!!
+        uses: docker/setup-buildx-action@v3
+        with:
+          compose-file: "./compose.yaml"   
+      - name: Docker compose build
+        run: |
+         docker compose build
+         source /etc/profile.d/live_vars.sh
+         docker container prune -f
+         docker compose up --force-recreate -d
+      - name: Nginx conf copy
+        run: |
+         sudo /root/hostsadd.sh 
+         sudo nginx -s reload

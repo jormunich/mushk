@@ -1,0 +1,33 @@
+name: 4.Remote command Live
+
+on:
+  workflow_dispatch:
+    inputs:
+      namedev:
+        description: 'Type command'
+        required: true      
+jobs:
+  deploy:
+    runs-on: munichdev
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set MY_VAR
+        run: |
+          DEV_URL=${{vars.live_url}}
+          MY_VAR="${live_URL}"
+          echo "$MY_VAR" # Prints the value before processing
+          echo "export MY_VAR=$(echo "$MY_VAR" | tr 'A-Z' 'a-z')" | sudo tee /etc/profile.d/remlive_vars.sh > /dev/null
+          sudo chmod +x /etc/profile.d/remlive_vars.sh
+          source /etc/profile.d/remlive_vars.sh
+          echo "$MY_VAR"
+      - name: Execute command in Docker container
+        run: |
+          source /etc/profile.d/remlive_vars.sh
+          echo "$MY_VAR"
+          echo '${{ github.event.inputs.namedev }}'
+          docker exec "$MY_VAR" bash -c '${{ github.event.inputs.namedev }}'
+      
+      
+     

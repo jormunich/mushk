@@ -1,0 +1,28 @@
+services:
+  # #PHP Service
+  $comvar:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - MY_VAR=${MY_VAR}
+    container_name: ${MY_VAR}
+    restart: unless-stopped
+    volumes:
+      - project-storage:/var/www/app/storage 
+    tty: true
+    networks:
+      - app-network
+volumes:
+  project-storage:
+    name: project-${MY_VAR}
+    driver: local
+    driver_opts:
+      type: none
+      device: /storages/${MY_VAR} 
+      o: bind      
+
+# Docker Networks
+networks:
+  app-network:
+    driver: bridge
