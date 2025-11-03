@@ -78,4 +78,12 @@ class PageController extends Controller
         return redirect()->back()
             ->with('info', __('You are already subscribed to our newsletter.'));
     }
+
+    /**
+     * Display the shopping cart page.
+     */
+    public function cart(): Renderable
+    {
+        return view('pages.cart');
+    }
 }

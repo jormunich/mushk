@@ -10,8 +10,7 @@
                     <li class="breadcrumb-item"><a href="{{ route('products.index') }}">{{ __('Products') }}</a></li>
                     @if($product->categories->isNotEmpty())
                         <li class="breadcrumb-item"><a href="{{ route('products.index', ['category_id' => $product->categories->first()->id]) }}">{{ $product->categories->first()->name }}</a></li>
-                    @endif
-                    <li class="breadcrumb-item active">{{ $product->name }}</li>
+                    @end                    <li class="breadcrumb-item active">{{ $product->name }}</li>
                 </ol>
             </nav>
 
@@ -26,7 +25,11 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="product-details">
+                    <div class="product-details" 
+                         data-product-id="{{ $product->id }}" 
+                         data-product-name="{{ $product->name }}" 
+                         data-product-price="{{ $product->price }}" 
+                         data-product-image="{{ $product->getFilePath() }}">
                         <h1 class="h2 mb-3">{{ $product->name }}</h1>
 
                         @if($product->categories->isNotEmpty())

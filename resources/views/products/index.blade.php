@@ -10,7 +10,11 @@
                     <div class="swiper">
                         <div class="swiper-wrapper row">
                             @foreach($products as $product)
-                            <div class="product-item col-md-3">
+                            <div class="product-item col-md-3"
+                                 data-product-id="{{ $product->id }}"
+                                 data-product-name="{{ $product->name }}"
+                                 data-product-price="{{ $product->price }}"
+                                 data-product-image="{{ $product->getFilePath() }}">
                                 <figure>
                                     <a href="{{ route('products.show', $product->id) }}" title="{{ $product->name }}">
                                         <img src="{{ $product->getFilePath() }}" alt="{{ $product->name }}" class="tab-image">
@@ -33,7 +37,7 @@
                                     </div>
                                     <div class="button-area p-3 pt-0">
                                         <div class="row g-1 mt-2">
-                                            <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
+                                            <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1" min="1"></div>
                                             <div class="col-7"><a href="#" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart"><svg width="18" height="18"><use xlink:href="#cart"></use></svg> {{ __('Add to Cart') }}</a></div>
                                             <div class="col-2"><a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6"><svg width="18" height="18"><use xlink:href="#heart"></use></svg></a></div>
                                         </div>

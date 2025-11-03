@@ -20,6 +20,7 @@ Route::group(['prefix' => 'pages', 'as' => 'pages.'], function () {
     Route::get('/contact-us', [PageController::class, 'contact'])->name('contact');
     Route::post('/contact-us', [PageController::class, 'storeContact'])->name('contact.store');
     Route::post('/subscribe', [PageController::class, 'subscribe'])->name('subscribe');
+    Route::get('/cart', [PageController::class, 'cart'])->name('cart');
     Route::get('/terms', [PageController::class, 'terms'])->name('terms');
     Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 });
