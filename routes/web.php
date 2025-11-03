@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 
 
@@ -12,5 +13,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('index');
     Route::get('/{id}', [ProductController::class, 'show'])->name('show');
+});
+
+Route::group(['prefix' => 'pages', 'as' => 'pages.'], function () {
+    Route::get('/about-us', [PageController::class, 'about'])->name('about');
+    Route::get('/contact-us', [PageController::class, 'contact'])->name('contact');
+    Route::post('/contact-us', [PageController::class, 'storeContact'])->name('contact.store');
+    Route::post('/subscribe', [PageController::class, 'subscribe'])->name('subscribe');
+    Route::get('/terms', [PageController::class, 'terms'])->name('terms');
+    Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 });
 

@@ -196,7 +196,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle pe-3" role="button" id="pages" data-bs-toggle="dropdown" aria-expanded="false">{{ __('Pages') }}</a>
                         <ul class="dropdown-menu border-0 p-3 rounded-0 shadow" aria-labelledby="pages">
-                            <li><a href="{{ route('about') }}" class="dropdown-item">{{ __('About Us') }}</a></li>
+                            <li><a href="{{ route('pages.about') }}" class="dropdown-item">{{ __('About Us') }}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -228,7 +228,7 @@
 
 @yield('content')
 
-@include('layouts.partial._footer')
+@include('layouts.components._footer')
 
 <script src="/js/jquery-1.11.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

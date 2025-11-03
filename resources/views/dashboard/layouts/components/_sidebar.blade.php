@@ -19,6 +19,18 @@
                     <p>{{ __('Users') }}</p>
                 </a>
             </li>
+            <li class="nav-item @if(Request::is('dashboard/contacts*')) active @endif">
+                <a href="{{ route('dashboard.contacts.index') }}">
+                    <i class="fas fa-address-book"></i>
+                    <p>{{ __('Contacts') }}</p>
+                </a>
+            </li>
+            <li class="nav-item @if(Request::is('dashboard/subscribers*')) active @endif">
+                <a href="{{ route('dashboard.subscribers.index') }}">
+                    <i class="fas fa-envelope"></i>
+                    <p>{{ __('Email Subscribers') }}</p>
+                </a>
+            </li>
             <li class="nav-section">
                 <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>

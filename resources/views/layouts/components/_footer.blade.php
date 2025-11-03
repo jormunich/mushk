@@ -42,7 +42,7 @@
                     <h5 class="widget-title">{{ __('Mushk') }}</h5>
                     <ul class="menu-list list-unstyled">
                         <li class="menu-item">
-                            <a href="#" class="nav-link">{{ __('About us') }}</a>
+                            <a href="{{ route('pages.about') }}" class="nav-link">{{ __('About us') }}</a>
                         </li>
                         <li class="menu-item">
                             <a href="#" class="nav-link">{{ __('Careers') }}</a>
@@ -68,13 +68,13 @@
                     <h5 class="widget-title">{{ __('Customer Service') }}</h5>
                     <ul class="menu-list list-unstyled">
                         <li class="menu-item">
-                            <a href="#" class="nav-link">{{ __('Contact') }}</a>
+                            <a href="{{ route('pages.contact') }}" class="nav-link">{{ __('Contact') }}</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="nav-link">{{ __('Privacy Policy') }}</a>
+                            <a href="{{ route('pages.privacy') }}" class="nav-link">{{ __('Privacy Policy') }}</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="nav-link">{{ __('Terms & Conditions') }}</a>
+                            <a href="{{ route('pages.terms') }}" class="nav-link">{{ __('Terms & Conditions') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -83,10 +83,38 @@
                 <div class="footer-menu">
                     <h5 class="widget-title">{{ __('Subscribe Us') }}</h5>
                     <p>{{ __('Subscribe to our newsletter to get updates about our grand offers') }}.</p>
-                    <form class="d-flex mt-3 gap-0" action="index.html">
-                        <input class="form-control rounded-start rounded-0 bg-light" type="email" placeholder="Email Address" aria-label="Email Address">
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    @if(session('info'))
+                        <div class="alert alert-info alert-dismissible fade show mt-3" role="alert">
+                            {{ session('info') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    <form class="d-flex mt-3 gap-0" action="{{ route('pages.subscribe') }}" method="POST">
+                        @csrf
+                        <input class="form-control rounded-start rounded-0 bg-light @error('email') is-invalid @enderror" 
+                               type="email" 
+                               name="email" 
+                               placeholder="{{ __('Email Address') }}" 
+                               aria-label="Email Address"
+                               value="{{ old('email') }}"
+                               required>
                         <button class="btn btn-dark rounded-end rounded-0" type="submit">{{ __('Subscribe') }}</button>
                     </form>
+                    @error('email')
+                        <div class="text-danger small mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
