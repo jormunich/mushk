@@ -10,7 +10,8 @@
                     <li class="breadcrumb-item"><a href="{{ route('products.index') }}">{{ __('Products') }}</a></li>
                     @if($product->categories->isNotEmpty())
                         <li class="breadcrumb-item"><a href="{{ route('products.index', ['category_id' => $product->categories->first()->id]) }}">{{ $product->categories->first()->name }}</a></li>
-                    @end                    <li class="breadcrumb-item active">{{ $product->name }}</li>
+                    @endif
+                    <li class="breadcrumb-item active">{{ $product->name }}</li>
                 </ol>
             </nav>
 
@@ -76,10 +77,15 @@
                                 </div>
                                 <div class="col-auto">
                                     <label class="form-label d-block mb-2" style="visibility: hidden;">{{ __('Action') }}</label>
-                                    <a href="#" class="btn btn-primary btn-lg px-5" onclick="addToCart(event)">
-                                        <svg width="20" height="20" class="me-2"><use xlink:href="#cart"></use></svg>
-                                        {{ __('Add to Cart') }}
-                                    </a>
+                                    <div class="d-flex gap-2">
+                                        <a href="#" class="btn btn-primary btn-lg px-5" onclick="addToCart(event)">
+                                            <svg width="20" height="20" class="me-2"><use xlink:href="#cart"></use></svg>
+                                            {{ __('Add to Cart') }}
+                                        </a>
+                                        <a href="#" class="btn btn-outline-danger btn-lg" data-favorite-id="{{ $product->id }}" title="{{ __('Add to Favorites') }}">
+                                            <svg width="24" height="24"><use xlink:href="#heart"></use></svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

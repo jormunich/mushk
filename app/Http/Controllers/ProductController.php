@@ -22,6 +22,26 @@ class ProductController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
+        // Sorting
+        $sort = $request->get('sort', 'default');
+        switch ($sort) {
+            case 'price_asc':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'review_asc':
+                $query->orderBy('review', 'asc');
+                break;
+            case 'review_desc':
+                $query->orderBy('review', 'desc');
+                break;
+            default:
+                $query->orderBy('id', 'desc');
+                break;
+        }
+
         $products = $query->get();
 
         return view('products.index', compact('products'));
