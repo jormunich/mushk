@@ -49,6 +49,12 @@
                     <p>{{ __('Products') }}</p>
                 </a>
             </li>
+            <li class="nav-item @if(Request::is('dashboard/orders*')) active @endif">
+                <a href="{{ route('dashboard.orders.index') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>{{ __('Orders') }}</p>
+                </a>
+            </li>
             <li class="nav-section">
                 <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>

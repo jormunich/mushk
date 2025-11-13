@@ -197,10 +197,8 @@ const Cart = {
             return;
         }
 
-        // For now, just show a message. You can implement actual checkout later
-        this.showNotification('Checkout functionality coming soon!', 'info');
-        // You can redirect to a checkout page when implemented
-        // window.location.href = '/checkout';
+        // Redirect to checkout page
+        window.location.href = '/checkout';
     }
 };
 
